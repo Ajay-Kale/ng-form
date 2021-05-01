@@ -1,0 +1,184 @@
+<div class="container">
+  <form [formGroup]="profileForm">
+    <div class="custom-form-container">
+      <H2 class="custom-form-header">Information Form </H2>
+      <p>
+        <mat-form-field appearance="fill" class="custom-field-bg">
+          <mat-label>Wing</mat-label>
+          <mat-select formControlName="selectWing">
+            <mat-option value="A Wing">A Wing </mat-option>
+            <mat-option value="B Wing">B Wing </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="fill" class="custom-field-bg">
+          <mat-label>Flat No</mat-label>
+          <input formControlName="flatNo" type="number" matInput placeholder="End date">
+        </mat-form-field>
+      </p>
+
+      <div class="row">
+        <div class="col-md-6">
+
+          <p>
+            <mat-form-field class="example-full-width custom-field-bg" appearance="fill">
+              <mat-label>First Name</mat-label>
+              <input formControlName="firstName" matInput placeholder="First Name">
+            </mat-form-field>
+          </p>
+
+        </div>
+        <div class="col-md-6">
+
+          <p>
+            <mat-form-field class="example-full-width custom-field-bg" appearance="fill">
+              <mat-label>Last Name</mat-label>
+              <input formControlName="lastName" matInput placeholder="Last Name">
+            </mat-form-field>
+          </p>
+
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+
+          <p>
+            <mat-form-field class="example-full-width custom-field-bg" appearance="fill">
+              <mat-label>Email-ID</mat-label>
+              <input formControlName="emailId" matInput placeholder="Email-ID">
+            </mat-form-field>
+          </p>
+
+        </div>
+        <div class="col-md-6">
+
+          <p>
+            <mat-form-field class="example-full-width custom-field-bg" appearance="fill">
+              <mat-label>Contact No</mat-label>
+              <input formControlName="contactNo" matInput placeholder="Contact No">
+            </mat-form-field>
+          </p>
+
+        </div>
+      </div>
+
+      <div class=" form-group row">
+        <div class="col-md-6">
+
+          <p>
+            <mat-form-field class="example-full-width custom-field-bg" appearance="fill">
+              <mat-label>Alternate Contact No</mat-label>
+              <input formControlName="alternateNo" matInput placeholder="Alternative Contact No">
+            </mat-form-field>
+          </p>
+
+        </div>
+        <div class="col-md-6">
+          <mat-form-field appearance="fill" class="custom-field-bg">
+            <mat-label>Tenent | Owner</mat-label>
+            <mat-select formControlName="flatType" (selectionChange)="onFoodChange($event)">
+              <mat-option value="Tenant">Tenant </mat-option>
+              <mat-option value="owner">Owner </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+        </div>
+      </div>
+
+      <div class="row" *ngIf="isTenant">
+
+        <div class="col-md-6">
+          <div class="row">
+            <p>
+              <mat-checkbox formControlName="liveinSociety" class="example-margin custom-font-size">Is he living in the
+                Society</mat-checkbox>
+            </p>
+          </div>
+          <div class="row" *ngIf="isTenant">
+            <p>
+              <mat-checkbox formControlName="verificationStatus" class="example-margin custom-font-size">Is Police
+                Verification is Done</mat-checkbox>
+            </p>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <p>
+            <mat-form-field class="example-full-width custom-field-bg" appearance="fill">
+              <mat-label>Address</mat-label>
+              <textarea formControlName="address" matInput></textarea>
+            </mat-form-field>
+          </p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6" *ngIf="isTenant">
+          <p>
+            <mat-checkbox formControlName="regisAggrement" class="example-margin custom-font-size">Registration and
+              aggrement Done</mat-checkbox>
+          </p>
+        </div>
+
+        <div class="col-md-6" *ngIf="isTenant">
+
+          <mat-form-field appearance="fill">
+            <mat-label>Enter a date range</mat-label>
+            <mat-date-range-input [rangePicker]="picker">
+              <input formControlName="startingDate" matStartDate placeholder="Start date">
+              <input formControlName="endingDate" matEndDate placeholder="End date">
+            </mat-date-range-input>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-date-range-picker #picker></mat-date-range-picker>
+          </mat-form-field>
+
+        </div>
+        <button (click)="saveForm()" mat-button color="primary" class="custom-btn">Save Information</button>
+      </div>
+
+    </div>
+  </form>
+</div>
+
+<div class="col-md-8 mt-4 mb-4">
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Wing</th>
+        <th>FlatNO</th>
+        <th>FirstName</th>
+        <th>LastName</th>
+        <th>EmailID</th>
+        <th>ContactNo</th>
+        <th>AlternativeNO</th>
+        <th>FlatType</th>
+        <th>Live in Society</th>
+        <th>Verification status</th>
+        <th>Address</th>
+        <th>Regis Aggrement</th>
+        <th>Starting Date</th>
+        <th>Ending Date</th>
+
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of listData">
+        <td><span>{{item.selectWing}}</span></td>
+        <td><span>{{item.flatNo}}</span></td>
+        <td><span>{{item.firstName}}</span></td>
+        <td><span>{{item.lastName}}</span></td>
+        <td><span>{{item.emailId}}</span></td>
+        <td><span>{{item.contactNo}}</span></td>
+        <td><span>{{item.alternateNo}}</span></td>
+        <td><span>{{item.flatType}}</span></td>
+        <td><span>{{item.liveinSociety}}</span></td>
+        <td><span>{{item.verificationStatus}}</span></td>
+        <td><span>{{item.address}}</span></td>
+        <td><span>{{item.regisAggrement}}</span></td>
+        <td><span>{{item.startingDate}}</span></td>
+        <td><span>{{item.endingDate}}</span></td>
+        <td><button type="button" class="btn btn-primary" (click)="removeItem(item)">Remove</button></td>
+      </tr>
+    </tbody>
+  </table>
+</div>

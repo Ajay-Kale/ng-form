@@ -1,0 +1,50 @@
+/* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  // background-color: rgb(79, 22, 185);
+}
+
+/* Importing Bootstrap SCSS file. */
+@import "~bootstrap/scss/bootstrap";
+
+.example-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.example-full-width {
+  width: 100%;
+}
+
+.custom-form-container {
+  // background-color: rgb(79, 22, 185);
+  // color: white;
+  padding: 24px 24px 40px 24px;
+  margin-top: 10%;
+  margin-bottom: 10%;
+}
+.custom-form-header {
+  margin-bottom: 4%;
+  margin-top: 4%;
+}
+.custom-field-bg {
+  // background-color: rgb(61, 47, 187);
+  border: 2px;
+}
+.custom-btn {
+  width: 100%;
+  padding: 15px;
+  // background-color: white;
+  // color: black;
+  border-style: none;
+}
+.custom-font-size {
+  font-size: 18px;
+}
